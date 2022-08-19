@@ -12,7 +12,7 @@ function getRandThree() {
 
 //Get player choice of Rock, Paper, or Scissors
 //Check that player choice is Rock, Paper or Scissors
-//Ask to choose again if it isn't
+//Ask to choose again if it isn't and take that choice
 
 function getPlayerChoice() {
 
