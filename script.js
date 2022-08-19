@@ -2,7 +2,7 @@
 //Let player know what they are playing
 //Ask how many games they want to play
 
-const numGame = prompt('Let\'s play rock, paper, scissors! How many rounds do you want to play?');
+const numberOfGames = prompt('Let\'s play rock, paper, scissors! How many rounds do you want to play?');
 
 //Get random number between 0 and 2 and assign to variable
 
@@ -101,4 +101,4 @@ function startGame(num) {
     console.log(`That\'s ${i} rounds. Thanks for playing.`)
 }
 
-startGame(numGame);
+startGame(numberOfGames);
