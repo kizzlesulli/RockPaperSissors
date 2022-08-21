@@ -1,10 +1,10 @@
 
 //Let player know what they are playing
-//Ask how many games they want to play
+//Ask how many games they want to play and store number for iteration
 
 const numberOfGames = prompt('Let\'s play rock, paper, scissors! How many rounds do you want to play?');
 
-//Get random number between 0 and 2 and assign to variable
+//Get random number between 0 and 2
 
 function getRandThree() {
     return Math.floor(Math.random() * 3)
@@ -45,18 +45,30 @@ function getComputerChoice() {
     
     let n = getRandThree();
 
-    if (n == 0) {
-        console.log('Computer chooses Rock.');
-        return 'Rock';
-   
-    } else if (n == 1) {
-        console.log('Computer chooses Paper.');
-        return 'Paper';
-   
-    } else if (n == 2) {
-        console.log('Computer chooses Scissors.');
-        return 'Scissors';
+    switch (n) {
+        case 0: 
+            console.log('Computer chooses Rock.');
+            return 'Rock';
+        case 1:
+            console.log('Computer chooses Paper.');
+            return 'Paper';
+        case 2:
+            console.log('Computer chooses Scissors.');
+            return 'Scissors';
     }
+
+    // if (n == 0) {
+    //     console.log('Computer chooses Rock.');
+    //     return 'Rock';
+   
+    // } else if (n == 1) {
+    //     console.log('Computer chooses Paper.');
+    //     return 'Paper';
+   
+    // } else if (n == 2) {
+    //     console.log('Computer chooses Scissors.');
+    //     return 'Scissors';
+    // }
 }
 
 //Play a round of Rock, Paper, Scissors
