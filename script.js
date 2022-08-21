@@ -98,7 +98,7 @@ function playRound(player, computer) {
 //Start the game and iterate rounds
 //Let player know game is over
 
-function startGame(num) {
+function playGame(num) {
 
     for(i = 0; i < num; i++) {
 
@@ -113,4 +113,4 @@ function startGame(num) {
     console.log(`That\'s ${i} rounds. Thanks for playing.`)
 }
 
-startGame(numberOfGames);
+playGame(numberOfGames);
