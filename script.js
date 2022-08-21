@@ -1,17 +1,17 @@
 
-//Let player know what they are playing
-//Ask how many games they want to play and store number for iteration
+//Lets player know what they are playing
+//Used to iterate number of rounds in playGame function
 
-const numberOfGames = prompt('Let\'s play rock, paper, scissors! How many rounds do you want to play?');
+const numberOfRounds = prompt('Let\'s play rock, paper, scissors! How many rounds do you want to play?');
 
-//Get random number between 0 and 2
+//Random number between 0 and 2
 
 function getRandThree() {
     return Math.floor(Math.random() * 3)
 }
 
 //Get player choice of Rock, Paper, or Scissors
-//Check that player choice is Rock, Paper or Scissors
+//Make sure it is Rock, Paper, or Scissors
 //Ask to choose again if it isn't and take that choice
 
 function getPlayerChoice() {
