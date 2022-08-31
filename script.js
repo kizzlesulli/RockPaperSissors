@@ -2,7 +2,7 @@
 //Lets player know what they are playing
 //Used to iterate number of rounds in playGame function
 
-const numberOfRounds = prompt('Let\'s play rock, paper, scissors! How many rounds do you want to play?');
+//const numberOfRounds = prompt('Let\'s play rock, paper, scissors! How many rounds do you want to play?');
 
 //Random number between 0 and 2
 

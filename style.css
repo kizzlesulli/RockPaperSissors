@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'RubikDirt';
+    src: url('fonts/RubikDirt-Regular.ttf');
+    font-weight: bold;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(73, 58, 87);
+    text-align: center;
+    height: 100vh;
+}
+
+.title-banner {
+    font-family: RubikDirt, Impact;
+    color: rgb(242, 228, 255);
+    font-size: 60px;
+    padding: 30px;
+}
+
+.game-display {
+    color: rgb(55, 43, 66);
+    background-color: rgb(158, 137, 177);
+    padding: 30px;
+}
+
+.info-box {
+    width: 250px;
+    height: auto;
+    margin: 0px 15px;
+}
+
+.round-number {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    height: 30px;
+    margin-bottom: 30px;
+}
+
+.results {
+    display: flex;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+.player-name, .player-score, .computer-name, .computer-score {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.player-score, .computer-score {
+    margin-bottom: 30px;
+}
+
+.player-results, .computer-results {
+    display: flex;
+    width: 250px;
+    margin: 0 15px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-results > p, .computer-results > p {
+    text-align: left;
+    margin: 0px;
+}
+
+.player-selection {
+    color: rgb(206, 199, 212);
+    padding: 30px;
+}
+
+.results-text, .selection-text {
+    font-weight: bold;
+}
+
+.selection-text {
+    margin-bottom: 30px;
+}
+
+.selection-boxes {
+    display: flex;
+    justify-content: center;
+}
+
+.box {
+    display: flex;
+    color: rgb(206, 199, 212);
+    background-color: rgb(107, 93, 119);
+    font-family: Impact;
+    font-size: 25px;
+    font-weight: bolder;
+    border: solid 2px rgb(196, 181, 209);
+    border-radius: 6px;
+    margin: 0 15px;
+    width: 150px;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+}
+
+.results .box {
+    background-color: rgb(107, 78, 128);
+    border: none;
+    margin: 0;
+}
+
+.selection.box:hover {
+    background-color: rgb(80, 65, 50);
+    border: solid 2px rgb(219, 179, 150);
+    color: rgb(250, 199, 133);
+    width: 150px;
+    height: 60px;
+}
