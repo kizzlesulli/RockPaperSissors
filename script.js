@@ -45,14 +45,14 @@ function startGame(scenario, buttonLeft, buttonRight, resultsText, roundNumber) 
     playerResults.innerHTML = `
         <div class="player-name">Distressed Defender</div>
         <div class="player-score">0</div>
-        <p></p>
+        <p>You chose...</p>
         <div class="box player-choice"></div>
     `;
 
     computerResults.innerHTML = `
         <div class="computer-name">Unhinged Enthusiast</div>
         <div class="computer-score">0</div>
-        <p></p>
+        <p>They chose...</p>
         <div class="box computer-choice"></div>
     `;
 
