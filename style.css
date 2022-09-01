@@ -128,6 +128,7 @@ body {
 input {
     width: 50px;
     text-align: center;
+    background-color: rgb(242, 228, 255);
 }
 
 .results .box {
@@ -136,7 +137,7 @@ input {
     margin: 0;
 }
 
-.selection.box:hover, .box.play:hover, .box.cancel:hover, .box.start:hover, .cancel.chose {
+.selection.box:hover, .box.play:hover, .box.cancel:hover, .box.start:hover, .box.chose {
     background-color: rgb(80, 65, 50);
     border: solid 2px rgb(219, 179, 150);
     color: rgb(250, 199, 133);
