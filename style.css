@@ -112,14 +112,14 @@ body {
     display: flex;
     color: rgb(206, 199, 212);
     background-color: rgb(107, 93, 119);
-    font-family: Impact;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 25px;
     font-weight: bolder;
     border: solid 2px rgb(196, 181, 209);
     border-radius: 6px;
     margin: 0 15px;
-    padding: 10px 20px;
-    width: 100px;
+    padding: 10px 10px;
+    width: 120px;
     height: 60px;
     align-items: center;
     justify-content: center;

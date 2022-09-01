@@ -1,8 +1,23 @@
 
-//Lets player know what they are playing
-//Used to iterate number of rounds in playGame function
+//Change intro HTML to ask number of rounds HTML
 
-//const numberOfRounds = prompt('Let\'s play rock, paper, scissors! How many rounds do you want to play?');
+function askNumberRounds() {
+
+    let scenario = document.querySelector('.scenario');
+    let numInput = document.querySelector('.box.play');
+    let startButton = document.querySelector('.box.cancel');
+
+    scenario.innerText = 'How many games do you want to play?';
+    
+    numInput.innerHTML = '<input class="get-number" type="number" step="2" min="3" value="3">';
+    numInput.classList.remove('play');
+    numInput.classList.add('number-games');
+    startButton.innerText = 'START';
+    startButton.classList.remove('cancel')
+    startButton.classList.add('start');
+    console.log(numInput.classList, startButton.classList);
+}
+
 
 //Random number between 0 and 2
 
@@ -113,4 +128,15 @@ function playGame(num) {
     console.log(`That\'s ${i} rounds. Thanks for playing.`)
 }
 
-playGame(numberOfGames);
+//playGame(numberOfGames);
+
+const boxes = Array.from(document.getElementsByClassName('box'));
+boxes.forEach(box => box.addEventListener('click', (e) => {
+
+    if(e.target.classList.contains('play')) {
+        askNumberRounds();
+    };
+}));
+
+
+//window.addEventListener('click', e => console.log(e.target));
