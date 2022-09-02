@@ -27,14 +27,8 @@ body {
 .game-display {
     color: rgb(55, 43, 66);
     background-color: rgb(158, 137, 177);
-    min-height: 300px;
+    min-height: 305px;
     padding: 30px;
-}
-
-.info-box {
-    width: 250px;
-    height: auto;
-    margin: 0px 15px;
 }
 
 .round-number {
@@ -46,13 +40,13 @@ body {
 }
 
 .round-number.scenario {
-    margin-top: 30px;
+    margin-top: 25px;
     min-height: 70px;
 }
 
 .results {
     display: flex;
-    font-size: 20px;
+    font-size: 18px;
     min-height: 24px;
     margin-bottom: 30px;
     justify-content: center;
@@ -76,7 +70,6 @@ body {
 }
 
 .player-results > p, .computer-results > p {
-    text-align: left;
     margin: 0px;
 }
 
@@ -87,9 +80,10 @@ body {
 }
 
 .results-text, .selection-text {
-    font-size: 21px;
+    font-family: 'Silkscreen-Regular', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 20px;
     font-weight: bold;
-    min-height: 24px;
+    min-height: 25px;
 }
 
 .cancel-text {
