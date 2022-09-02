@@ -1,8 +1,8 @@
 //Change intro HTML to cancel game HTML
 
-function cancelGame(scenario, buttonRight, resultsText) {
+function cancelGame(roundNumber, buttonRight, resultsText) {
 
-    scenario.innerText = 'The unhinged rock paper scissors enthusiast chose scissors...';
+    roundNumber.innerText = 'The unhinged rock paper scissors enthusiast chose scissors...';
     
     buttonRight.classList.remove('cancel')
     buttonRight.classList.add('chose');;
@@ -11,9 +11,10 @@ function cancelGame(scenario, buttonRight, resultsText) {
 
 //Change intro HTML to ask number of rounds HTML
 
-function askNumberRounds(scenario, buttonLeft, buttonRight) {
+function askNumberRounds(roundNumber, buttonLeft, buttonRight, resultsText) {
 
-    scenario.innerText = 'How many games do you want to play?';
+    resultsText.innerHTML = '';
+    roundNumber.innerText = 'How many games do you want to play?';
     
     buttonLeft.innerHTML = '<input class="get-rounds" type="number" step="2" min="3" value="3">';
     buttonLeft.classList.remove('play');
@@ -27,34 +28,36 @@ function askNumberRounds(scenario, buttonLeft, buttonRight) {
 
 let numberOfRounds;
 
-function startGame(scenario, buttonLeft, buttonRight, resultsText, roundNumber) {
+function startGame(roundNumber, buttonLeft, buttonRight, playerSelection, resultsText) {
 
-    scenario.remove();
-    buttonLeft.innerText = '';
-    buttonRight.innerText = '';
-    resultsText.innerText = '';
+    roundNumber.classList.remove('scenario');
     roundNumber.innerText = 'Round 1';
+    
+    buttonLeft.innerHTML = '';
+    buttonLeft.classList.remove('number-rounds');
+    buttonLeft.classList.add('player-choice');
+    
+    buttonRight.innerText = '';
+    buttonRight.classList.remove('start');
+    buttonRight.classList.add('computer-choice');
+    
+    resultsText.innerText = '';
 
-    let playerResults = document.querySelector('.player-results');
-    let computerResults = document.querySelector('.computer-results');
-    let playerSelection = document.querySelector('.player-selection');
+    let playerName = document.querySelector('.player-name');
+    let playerScore = document.querySelector('.player-score');
+    let playerText = document.querySelector('.player-results > p');
 
-    playerResults.innerHTML = '';
-    computerResults.innerHTML = '';
+    playerName.innerText = 'Distressed Defender';
+    playerScore.innerText = '0';
+    playerText.innerText = 'You chose...';
 
-    playerResults.innerHTML = `
-        <div class="player-name">Distressed Defender</div>
-        <div class="player-score">0</div>
-        <p>You chose...</p>
-        <div class="box player-choice"></div>
-    `;
+    let computerName = document.querySelector('.computer-name');
+    let computerScore = document.querySelector('.computer-score');
+    let computerText = document.querySelector('.computer-results > p');
 
-    computerResults.innerHTML = `
-        <div class="computer-name">Unhinged Enthusiast</div>
-        <div class="computer-score">0</div>
-        <p>They chose...</p>
-        <div class="box computer-choice"></div>
-    `;
+    computerName.innerText = 'Unhinged Enthusiast';
+    computerScore.innerText = '0';
+    computerText.innerText = 'They chose...';
 
     playerSelection.innerHTML = `
         <div class="selection-text">How will you defend yourself?</div>
@@ -66,40 +69,32 @@ function startGame(scenario, buttonLeft, buttonRight, resultsText, roundNumber) 
     `;
 }
 
-
-//Random number between 0 and 2
-
-function getRandThree() {
-    return Math.floor(Math.random() * 3)
-}
-
 //Get player choice of Rock, Paper, or Scissors
 //Make sure it is Rock, Paper, or Scissors
 //Ask to choose again if it isn't and take that choice
 
-function getPlayerChoice() {
+function getPlayerChoice(choice) {
 
-    let choice = prompt('Choose rock, paper, or scissors!').toLowerCase();
-
-    while (!(choice == 'rock' || choice == 'paper' || choice == 'scissors')) {
-
-        choice = prompt('That isn\'t paper, scissors, or a rock. Please choose again!').toLowerCase();
-    }
-
-    if (choice == 'rock') {
+    if (choice == 'Rock') {
         
         console.log('You choose Rock.');
     
-    } else if (choice == 'paper') {
+    } else if (choice == 'Paper') {
         
         console.log('You choose Paper.');
     
-    } else if (choice == 'scissors') {
+    } else if (choice == 'Scissors') {
         
         console.log('You choose Scissors.');
     }
     
     return choice.charAt(0).toUpperCase() + choice.slice(1);
+}
+
+//Random number between 0 and 2
+
+function getRandThree() {
+    return Math.floor(Math.random() * 3)
 }
 
 //Get computer choice of Rock, Paper, or Scissors
@@ -110,13 +105,10 @@ function getComputerChoice() {
 
     switch (n) {
         case 0: 
-            console.log('Computer chooses Rock.');
             return 'Rock';
         case 1:
-            console.log('Computer chooses Paper.');
             return 'Paper';
         case 2:
-            console.log('Computer chooses Scissors.');
             return 'Scissors';
     }
 
@@ -161,19 +153,64 @@ function playRound(player, computer) {
 //Start the game and iterate rounds
 //Let player know game is over
 
-function playGame(num) {
+let i = 1;
+let playerScore = 0;
+let computerScore = 0;
 
-    for(i = 0; i < num; i++) {
+function playGame(numberOfRounds, roundNumber, buttonLeft, buttonRight, resultsText) {
 
-        console.log(`Round ${i + 1}`)
+    let selectionText = document.querySelector('.selection-text');
+    let selectionBoxesDiv = document.querySelector('.selection-boxes');
+    let computerChoice;
+    let playerChoice;
 
-        let playerChoice = getPlayerChoice();
-        let computerChoice = getComputerChoice();
+    const selectionBoxes = document.querySelectorAll('.selection.box')
+    selectionBoxes.forEach(box => box.addEventListener('click', (e) => {
 
-        playRound(playerChoice, computerChoice);
-    }
+        if (i < numberOfRounds) {
+            
+            playerChoice = e.target.innerText;
+            computerChoice = getComputerChoice();
+            console.log(buttonLeft);
+            buttonLeft.innerText = `${playerChoice}`;
+            buttonRight.innerText = `${computerChoice}`;
+            
+            i++
+            roundNumber.innerText = `Round ${i}`;
 
-    console.log(`That\'s ${i} rounds. Thanks for playing.`)
+        } else {
+            
+        //Play last round
+            computerChoice = getComputerChoice();
+
+            buttonLeft.innerText = `${e.target.innerText}`;
+            buttonRight.innerText = `${computerChoice}`;
+            roundNumber.innerHTML = 'Game Over';
+
+        //End game and ask to play again
+            selectionText.innerText = 'It does\'t look like they are going to leave you alone...';
+            selectionBoxesDiv.innerHTML = '<div class="selection box play-again">Play Again?</div>';
+
+            if (e.target.classList.contains('play-again')) {
+                i = 1;
+                roundNumber.classList.add('scenario');
+                askNumberRounds(roundNumber, buttonLeft, buttonRight);
+            }
+        }
+
+    }))
+
+    // for(i = 1; i < numberOfRounds; i++) {
+
+    //     roundNumber.innerText = `Round ${i}`;
+
+    //     let playerChoice = getPlayerChoice();
+    //     let computerChoice = getComputerChoice();
+
+    //     playRound(playerChoice, computerChoice);
+    // }
+
+    // console.log(`That\'s ${i} rounds. Thanks for playing.`)
 }
 
 //playGame(numberOfGames);
@@ -181,27 +218,24 @@ function playGame(num) {
 const topBoxes = document.querySelectorAll('.box');
 topBoxes.forEach(box => box.addEventListener('click', (e) => {
 
-    console.log(e.target);
-
-    let scenario = document.querySelector('.scenario');
+    let roundNumber = document.querySelector('.round-number');
     let buttonLeft = document.querySelector('.box.top-left');
     let buttonRight = document.querySelector('.box.top-right');
     let resultsText = document.querySelector('.results-text');
-    let roundNumber = document.querySelector('.round-number');
+    let playerSelection = document.querySelector('.player-selection');
 
     if(e.target.classList.contains('cancel')) {
-        cancelGame(scenario, buttonRight, resultsText);
+        cancelGame(roundNumber, buttonRight, resultsText);
 
     } else if(e.target.classList.contains('play')) {
-        askNumberRounds(scenario, buttonLeft, buttonRight);
+        askNumberRounds(roundNumber, buttonLeft, buttonRight, resultsText);
 
     } else if (e.target.classList.contains('start')) {
         
         numberOfRounds = document.querySelector('.get-rounds').value;
-        startGame(scenario, buttonLeft, buttonRight, resultsText, roundNumber);
-        //playGame(numberOfRounds);
+        startGame(roundNumber, buttonLeft, buttonRight, playerSelection, resultsText);
+        playGame(numberOfRounds, roundNumber, buttonLeft, buttonRight, resultsText);
     }
-
 }));
 
 
