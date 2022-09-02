@@ -39,16 +39,15 @@ body {
 
 .round-number {
     font-family: 'Silkscreen-Regular', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 23px;
+    font-size: 26px;
     font-weight: bold;
     min-height: 30px;
     margin-bottom: 30px;
 }
 
 .round-number.scenario {
-    margin-top: 60px;
-    min-height: 60px;
-    margin-bottom: 47px;
+    margin-top: 30px;
+    min-height: 70px;
 }
 
 .results {
@@ -59,20 +58,12 @@ body {
     justify-content: center;
 }
 
-/* .scenario {
-    font-family: 'Silkscreen-Regular', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 26px;
-    font-weight: bold;
-    min-height: 60px;
-    margin-bottom: 47px;   
-} */
-
 .player-name, .player-score, .computer-name, .computer-score {
     font-family: 'Courier New', Courier, monospace;
 }
 
 .player-score, .computer-score {
-    margin-bottom: 37px;
+    margin-bottom: 30px;
 }
 
 .player-results, .computer-results {
