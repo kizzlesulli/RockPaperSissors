@@ -38,7 +38,7 @@ function askNumberRounds() {
     divs.buttonLeft.innerHTML = '<input class="get-rounds" type="number" step="2" min="3" value="3">';
     divs.buttonLeft.classList.remove('play');
     divs.buttonLeft.classList.add('number-rounds');
-    divs.buttonRight.innerText = 'START';
+    divs.buttonRight.innerText = 'Start';
     divs.buttonRight.classList.remove('cancel')
     divs.buttonRight.classList.add('start');;
 }
@@ -103,6 +103,14 @@ function clearGame() {
     divs.computerText.innerText = '';
 }
 
+function updateGameDisplay(playerChoice, computerChoice, results) {
+    divs.buttonLeft.innerText = playerChoice;
+    divs.buttonRight.innerText = computerChoice;
+    divs.resultsText.innerText =  results;
+    divs.playerScore.innerText = playerScore;
+    divs.computerScore.innerHTML = computerScore;
+}
+
 function getRandThree() {
     return Math.floor(Math.random() * 3)
 }
@@ -147,7 +155,7 @@ function decideWinner() {
 
     if (playerScore > computerScore) {
 
-        return 'You won! The unhinged enthusiast begins to question their life.'
+        return 'You won! The unhinged enthusiast begins to question their life choices.'
 
     } else if (playerScore < computerScore) {
 
@@ -184,26 +192,18 @@ function playGame(numberOfRounds) {
             computerChoice = getComputerChoice();
             results = playRound(playerChoice, computerChoice);
             
-            divs.buttonLeft.innerText = playerChoice;
-            divs.buttonRight.innerText = computerChoice;
-            divs.resultsText.innerText =  results;
-            divs.playerScore.innerText = playerScore;
-            divs.computerScore.innerHTML = computerScore;
+            updateGameDisplay(playerChoice, computerChoice, results);
             
             currentRound++
-            divs.roundNumber.innerText = `Round ${i}`;
+            divs.roundNumber.innerText = `Round ${currentRound}`;
         } else {
         
         //Play last round
             playerChoice = e.target.innerText;
             computerChoice = getComputerChoice();
-            results = playRound(playerChoice, computerChoice, currentRound);
+            results = playRound(playerChoice, computerChoice);
         
-            divs.buttonLeft.innerText = playerChoice;
-            divs.buttonRight.innerText = computerChoice;
-            divs.resultsText.innerText =  results;
-            divs.playerScore.innerText = playerScore;
-            divs.computerScore.innerHTML = computerScore;
+            updateGameDisplay(playerChoice, computerChoice, results);
             
             divs.roundNumber.innerText = decideWinner();
 
