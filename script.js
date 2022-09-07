@@ -80,6 +80,21 @@ function startGame() {
     `;
 }
 
+function endGame () {
+
+    let selectionText = document.querySelector('.selection-text');
+    let buttonRock = document.querySelector('.box.rock');
+    let buttonPaper = document.querySelector('.box.paper');
+    let buttonScissors = document.querySelector('.box.scissors');
+
+    buttonRock.remove();
+    buttonScissors.remove();
+    buttonPaper.classList.remove('paper');
+    buttonPaper.classList.add('play-again');
+    selectionText.innerText = 'It does\'t look like they are going to leave you alone...';
+    buttonPaper.innerText = 'Play again?';
+}
+
 
 //Play game/round variables
 let currentRound = 1;
@@ -102,6 +117,18 @@ function clearGame() {
     divs.computerScore.innerText = '';
     divs.computerText.innerText = '';
 }
+
+function playAgain () {
+
+    clearGame();
+
+    divs.roundNumber.classList.add('scenario');
+    divs.buttonLeft.classList.add('start');
+    
+    askNumberRounds();
+}
+
+//Functions for playing the game and rounds
 
 function updateGameDisplay(playerChoice, computerChoice, results) {
     divs.buttonLeft.innerText = playerChoice;
@@ -129,7 +156,7 @@ function getComputerChoice() {
     }
 }
 
-function playRound(player, computer) {
+function getResults (player, computer) {
 
     if (player == computer) {
         
@@ -166,73 +193,69 @@ function decideWinner() {
     }
 }
 
-function playGame(numberOfRounds) {
+function playRound (evt, lastRound) {
 
-    let selectionText = document.querySelector('.selection-text');
-    let buttonRock = document.querySelector('.box.rock');
-    let buttonPaper = document.querySelector('.box.paper');
-    let buttonScissors = document.querySelector('.box.scissors');
     let computerChoice;
     let playerChoice;
 
-    const selectionBoxes = document.querySelectorAll('.selection.box')
+    playerChoice = evt.target.innerText;
+    computerChoice = getComputerChoice();
+    results = getResults(playerChoice, computerChoice);
+
+    updateGameDisplay(playerChoice, computerChoice, results);
+
+    if (!lastRound) {
+
+        currentRound++
+        divs.roundNumber.innerText = `Round ${currentRound}`;
+    
+    } else if (lastRound) {
+    
+        divs.roundNumber.innerText = decideWinner();
+    }
+}
+
+function playGame(numberOfRounds) {
+
+    const selectionBoxes = document.querySelectorAll('.selection.box');
     selectionBoxes.forEach(box => box.addEventListener('click', (e) => {
 
         if (e.target.classList.contains('play-again')) {
            
-            clearGame();
-
-            divs.roundNumber.classList.add('scenario');
-            divs.buttonLeft.classList.add('start');
-            
-            askNumberRounds();
+            playAgain();
         
         } else if (currentRound < numberOfRounds) { 
-            playerChoice = e.target.innerText;
-            computerChoice = getComputerChoice();
-            results = playRound(playerChoice, computerChoice);
             
-            updateGameDisplay(playerChoice, computerChoice, results);
-            
-            currentRound++
-            divs.roundNumber.innerText = `Round ${currentRound}`;
+            //Last round is false
+            playRound(e, false);
+
         } else {
         
-        //Play last round
-            playerChoice = e.target.innerText;
-            computerChoice = getComputerChoice();
-            results = playRound(playerChoice, computerChoice);
-        
-            updateGameDisplay(playerChoice, computerChoice, results);
-            
-            divs.roundNumber.innerText = decideWinner();
+            //Play last round; last round is true
+            playRound(e, true);
 
-        //End game and ask to play again
-            buttonRock.remove();
-            buttonScissors.remove();
-            buttonPaper.classList.remove('paper');
-            buttonPaper.classList.add('play-again');
-            selectionText.innerText = 'It does\'t look like they are going to leave you alone...';
-            buttonPaper.innerText = 'Play again?';
+            //Asks to play again
+            endGame();
         }
-    }
-    ));
+    }));
 }
 
-const topBoxes = document.querySelectorAll('.box');
-topBoxes.forEach(box => box.addEventListener('click', (e) => {
+function handleTopButtonInput (evt) {
 
-    if(e.target.classList.contains('cancel')) {
+    if(evt.target.classList.contains('cancel')) {
         cancelGame();
 
-    } else if(e.target.classList.contains('play')) {
+    } else if(evt.target.classList.contains('play')) {
         askNumberRounds();
 
-    } else if (e.target.classList.contains('start')) {
+    } else if (evt.target.classList.contains('start')) {
         
         let numberOfRounds = document.querySelector('.get-rounds').value;
         
         startGame();
         playGame(numberOfRounds);
     }
-}));
+}
+
+const topBoxes = document.querySelectorAll('.box');
+topBoxes.forEach(box => box.addEventListener('click', handleTopButtonInput));
