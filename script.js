@@ -123,7 +123,7 @@ function playAgain () {
     clearGame();
 
     divs.roundNumber.classList.add('scenario');
-    divs.buttonLeft.classList.add('start');
+    divs.buttonRight.classList.add('start');
     
     askNumberRounds();
 }
@@ -250,6 +250,8 @@ function handleTopButtonInput (evt) {
 
     } else if (evt.target.classList.contains('start')) {
         
+        console.log(evt.target);
+
         let numberOfRounds = document.querySelector('.get-rounds').value;
         
         startGame();
